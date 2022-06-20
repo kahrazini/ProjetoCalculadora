@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Desafio da Calculadora</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+
+            }
+            .fundo{
+                height: 100vh;
+                color: gray;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                text-align: center;
+            }
+            .calculadora{
+                position: absolute;
+                background-color: black;
+                left: 40%;
+                border-radius: 10px;
+                padding: 15px;
+            }
+            .button{
+                background-color: rgb(31, 31, 31);
+                width: 50px;
+                height: 50px;
+                margin: 3px;
+                font-size: 25px;
+                color: white;
+
+            }
+            #idresultado{
+                width: 207px;
+                background-color: white;
+                height: 30px;
+                margin: 5px;
+                font-size: 25px;
+                color: black;
+                text-align: right;
+                padding: 5px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="fundo">
+            <h1>Desafio da Calculadora Entra21 by Kamilla HR</h1>
+            <div class="calculadora">
+                <h1>Calculadora</h1>
+                <div>
+                    <input type="text" id="idresultado">
+                </div>
+                <table>
+                    <tr>
+                        <td><button class="button" onclick="salvanumero()">MS</button></td>
+                        <td><button class="button" onclick="somarNumero()">M+</button></td>
+                        <td><button class="button" onclick="menosNumero()">M-</button></td>
+                        <td><button class="button" onclick="recuperanumero()">MR</button></td>
+                        
+                    </tr>
+                    <tr>
+                        <td><button class="button" onclick="apagar()">CE</button></td>
+                        <td><button class="button" onclick="limpar()">C</button></td>
+                        <td><button class="button" onclick="limpaNumero()">MC</button></td>
+                        <td><button class="button" onclick="inserir('/')">/</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="button" onclick="inserir('7')">7</button></td>
+                        <td><button class="button" onclick="inserir('8')">8</button></td>
+                        <td><button class="button" onclick="inserir('9')">9</button></td>
+                        <td><button class="button" onclick="inserir('*')">*</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="button" onclick="inserir('4')">4</button></td>
+                        <td><button class="button" onclick="inserir('5')">5</button></td>
+                        <td><button class="button" onclick="inserir('6')">6</button></td>
+                        <td><button class="button" onclick="inserir('-')">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="button" onclick="inserir('1')">1</button></td>
+                        <td><button class="button" onclick="inserir('2')">2</button></td>
+                        <td><button class="button" onclick="inserir('3')">3</button></td>
+                        <td><button class="button" onclick="inserir('+')">+</button></td>                       
+                    </tr>
+                    <tr>
+                        <td><button class="button" onclick="inserir('0')">0</button></td>
+                        <td><button class="button"onclick="inserir('.')">.</button></td>
+                        <td colspan="2"><button class="button" style="width: 106px;" onclick="calcular()">=</button></td>
+                        
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script>
+            var numeroSalvo;
+            
+
+            //é a função para os numeros irem para a tela
+            function inserir(numb){
+
+                var numero = document.getElementById("idresultado").value;
+                document.getElementById("idresultado").value = numero + numb;
+
+            }
+            //é a função para a tecla C de limpar tudo da tela
+            function limpar(){
+                document.getElementById("idresultado").value = ""
+            }
+            
+            //é a função para a tecla CE para limpar um dígito por vez
+            function apagar(){
+                var resultado = document.getElementById("idresultado").value;
+
+                document.getElementById("idresultado").value = resultado.substring(0, resultado.length -1)
+            }
+            // fazer as contas
+            function calcular(){
+                var resultado = document.getElementById("idresultado").value
+                
+                if(resultado){
+                    document.getElementById("idresultado").value = eval(resultado)
+                }
+            }
+            //funçao do MS
+            function salvanumero(){
+                numeroSalvo = document.getElementById("idresultado").value
+            }
+
+            //função do MR
+            function recuperanumero(){
+                document.getElementById("idresultado").value = numeroSalvo
+            }
+
+            //função do MC
+            function limpaNumero(){
+                numeroSalvo = ""
+            }
+
+            //função do M+
+            function somarNumero(){
+                document.getElementById("idresultado").value = eval(document.getElementById("idresultado").value +"+"+ numeroSalvo)
+            }
+
+            //função do M-
+            function menosNumero(){
+                document.getElementById("idresultado").value = eval(document.getElementById("idresultado").value +"-"+ numeroSalvo) 
+            }      
+
+        </script>
+    </body>
+</html>
